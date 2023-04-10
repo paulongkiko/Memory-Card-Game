@@ -27,7 +27,7 @@ public class App {
     private JButton[][] cardButtons;
     
     public App() {
-        String[] options = {"1 Player", "2 Player", "High Scores"}; // Options for the menu dialog
+        String[] options = {"2 Player", "1 Player", "High Scores"}; // Options for the menu dialog
         int selection = JOptionPane.showOptionDialog(null, "Select a game mode:", "Memory Game Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
         
         if (selection == 0) {
