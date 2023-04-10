@@ -74,9 +74,9 @@ public class App {
         player1Score.setFont(player1Score.getFont().deriveFont(24f)); // Increases font size
         
         if (numPlayers == 1) {
-            player2Label = new JLabel("Computer");
-        } else {
             player2Label = new JLabel("Player 2");
+        } else {
+            player2Label = new JLabel("Computer");
         }
         
         player2Label.setHorizontalAlignment(JLabel.CENTER);
