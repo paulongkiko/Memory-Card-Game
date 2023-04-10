@@ -64,7 +64,7 @@ public class App {
         scorePanel.setLayout(new GridLayout(2, 2));
         scorePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
-        player1Label = new JLabel("Player 1");
+        player1Label = new JLabel("Moves Made:");
         player1Label.setHorizontalAlignment(JLabel.CENTER);
         player1Label.setForeground(Color.RED);
         player1Label.setFont(player1Label.getFont().deriveFont(24f)); // Increases font size
@@ -76,13 +76,13 @@ public class App {
         if (numPlayers == 1) {
             player2Label = new JLabel("Player 2");
         } else {
-            player2Label = new JLabel("Computer");
+            player2Label = new JLabel("Timer:");
         }
         
         player2Label.setHorizontalAlignment(JLabel.CENTER);
         player2Label.setForeground(Color.BLUE);
         player2Label.setFont(player2Label.getFont().deriveFont(24f)); // Increases font size
-        player2Score = new JLabel("0");
+        player2Score = new JLabel("00.00");
         player2Score.setHorizontalAlignment(JLabel.CENTER);
         player2Score.setForeground(Color.BLUE);
         player2Score.setFont(player2Score.getFont().deriveFont(24f)); // Increases font size
