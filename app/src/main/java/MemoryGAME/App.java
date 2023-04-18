@@ -3,15 +3,8 @@
  */
 package MemoryGAME;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 
 public class App {
