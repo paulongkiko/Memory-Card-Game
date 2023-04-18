@@ -3,8 +3,22 @@
  */
 package MemoryGAME;
 
-import javax.swing.*;
-import java.awt.*;
+
+import java.util.List;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
 
 
 public class App {
@@ -57,7 +71,7 @@ public class App {
         scorePanel.setLayout(new GridLayout(2, 2));
         scorePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
-        player1Label = new JLabel("Player 1");
+        player1Label = new JLabel("Moves Made:");
         player1Label.setHorizontalAlignment(JLabel.CENTER);
         player1Label.setForeground(Color.RED);
         player1Label.setFont(player1Label.getFont().deriveFont(24f)); // Increases font size
@@ -75,7 +89,7 @@ public class App {
         player2Label.setHorizontalAlignment(JLabel.CENTER);
         player2Label.setForeground(Color.BLUE);
         player2Label.setFont(player2Label.getFont().deriveFont(24f)); // Increases font size
-        player2Score = new JLabel("0");
+        player2Score = new JLabel("00.00.00");
         player2Score.setHorizontalAlignment(JLabel.CENTER);
         player2Score.setForeground(Color.BLUE);
         player2Score.setFont(player2Score.getFont().deriveFont(24f)); // Increases font size
@@ -98,9 +112,24 @@ public class App {
     }
 
     private void displayHighScores() {
-        // Code to display high scores goes here
-        JOptionPane.showMessageDialog(null, "High scores not implemented yet.");
+        List<String> highScores = new ArrayList<>(); // create an empty list of strings
+    
+        // create a new JPanel to hold the JList
+        JPanel scorePanel = new JPanel(new BorderLayout());
+    
+        // create a new JList with the empty high scores list
+        JList<String> scoreList = new JList<>(highScores.toArray(new String[0]));
+    
+        // add the JList to the panel
+        scorePanel.add(scoreList, BorderLayout.CENTER);
+    
+        // create a new JScrollPane to make the list scrollable
+        JScrollPane scrollPane = new JScrollPane(scorePanel);
+    
+        // show the scroll pane in a message dialog
+        JOptionPane.showMessageDialog(null, scrollPane, "High Scores", JOptionPane.PLAIN_MESSAGE);
     }
+    
 
     public static void main(String[] args) {
         new App();
