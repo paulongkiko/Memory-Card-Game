@@ -112,21 +112,13 @@ public class App {
     }
 
     private void displayHighScores() {
-        List<String> highScores = new ArrayList<>(); // create an empty list of strings
-    
-        // create a new JPanel to hold the JList
+        List<String> highScores = new ArrayList<>(); 
         JPanel scorePanel = new JPanel(new BorderLayout());
-    
-        // create a new JList with the empty high scores list
         JList<String> scoreList = new JList<>(highScores.toArray(new String[0]));
-    
-        // add the JList to the panel
         scorePanel.add(scoreList, BorderLayout.CENTER);
-    
-        // create a new JScrollPane to make the list scrollable
         JScrollPane scrollPane = new JScrollPane(scorePanel);
     
-        // show the scroll pane in a message dialog
+    
         JOptionPane.showMessageDialog(null, scrollPane, "High Scores", JOptionPane.PLAIN_MESSAGE);
     }
     
