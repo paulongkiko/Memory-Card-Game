@@ -73,7 +73,7 @@ public class MemoryGameGUI {
         player2Label.setHorizontalAlignment(JLabel.CENTER);
         player2Label.setForeground(Color.BLUE);
         player2Label.setFont(player2Label.getFont().deriveFont(24f)); // Increases font size
-        player2Score = new JLabel("00.00.00");
+        player2Score = new JLabel("0");
         player2Score.setHorizontalAlignment(JLabel.CENTER);
         player2Score.setForeground(Color.BLUE);
         player2Score.setFont(player2Score.getFont().deriveFont(24f)); // Increases font size
