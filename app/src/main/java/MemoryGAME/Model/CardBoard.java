@@ -1,3 +1,6 @@
-//package MemoryGAME.Model;
+package MemoryGame.model;
 
-//import java.io.Serializable
+public class CardBoard {
+
+    
+}
