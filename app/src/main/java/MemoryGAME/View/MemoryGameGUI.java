@@ -55,7 +55,7 @@ public class MemoryGameGUI {
         scorePanel.setLayout(new GridLayout(2, 2));
         scorePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
-        player1Label = new JLabel("Moves Made:");
+        player1Label = new JLabel("Player 1");
         player1Label.setHorizontalAlignment(JLabel.CENTER);
         player1Label.setForeground(Color.RED);
         player1Label.setFont(player1Label.getFont().deriveFont(24f)); // Increases font size
