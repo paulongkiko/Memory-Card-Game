@@ -1,7 +1,7 @@
 package MemoryGame.model;
 
 import java.util.ArrayList;
-import MemoryGame.GameObserver;
+//import MemoryGame.GameObserver;
 
 public class Card {
 
