@@ -9,7 +9,6 @@ public class MemoryGameController implements MemoryGameControllerInterface {
     public MemoryGameController() {
         new MemoryGameGUI();
         CardBoard board = new CardBoard();
-        board.printCards();
     }
 
 }
