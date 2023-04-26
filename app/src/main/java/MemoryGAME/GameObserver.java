@@ -1,6 +1,6 @@
-/*package main.java.MemoryGAME;
+package MemoryGame;
 
-public interface GameObserver {
+public interface GameObserver
+{
     public void update();
 }
-*/

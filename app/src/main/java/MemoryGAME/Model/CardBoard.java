@@ -2,7 +2,7 @@ package MemoryGame.model;
 
 import java.util.ArrayList;
 import java.util.Random;
-//import MemoryGame.GameObserver;
+import MemoryGame.GameObserver;
 
 public class CardBoard
 {
@@ -43,6 +43,7 @@ public class CardBoard
             }
         }
     }
+
 
 	public boolean checkMatch(Card card1, Card card2)
 	{
