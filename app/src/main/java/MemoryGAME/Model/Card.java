@@ -3,7 +3,7 @@ package MemoryGame.model;
 public class Card {
 
 }
-import javax.swing.*;
+/*import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.metal.MetalBorders;
 import java.awt.*;
@@ -74,4 +74,4 @@ public class Card extends JButton{
         return isFlipped ? frontIcon:backIcon;
     }
 
-}
+}*/
