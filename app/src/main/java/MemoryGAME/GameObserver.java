@@ -1,4 +1,4 @@
-package main.java.MemoryGAME;
+/*package main.java.MemoryGAME;
 
 public interface GameObserver {
     public void update();
