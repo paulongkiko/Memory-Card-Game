@@ -1,12 +1,12 @@
 package MemoryGame.model;
 
 import java.util.ArrayList;
-import MemoryGame.GameObserver;
+//import MemoryGame.GameObserver;
 
 public class CardBoard
 {
 	private Card[][] cards;
-	private ArrayList<GameObserver> observers = new ArrayList<GameObserver>();
+	//private ArrayList<GameObserver> observers = new ArrayList<GameObserver>();
 
 	public CardBoard()
 	{

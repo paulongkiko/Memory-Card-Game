@@ -11,7 +11,7 @@ public class Card
 	public Card(int value)
 	{
 		this.value = value;
-		this.flipperOver = false;
+		this.flippedOver = false;
 	}
 
 	public int getValue()
