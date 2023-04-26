@@ -105,8 +105,8 @@ public class MemoryGameGUI {
         scorePanel.add(movesLabel); // add moves label to score panel
 
 
-        // create and start a timer to update the player 1 score every milisecond
-        timer.start();*/
+        // create and start a timer to update the player 1 score every second
+ 
         Timer timer = new Timer(1, new ActionListener() {
             private int elapsedMilliseconds = 0;
             private int elapsedSeconds = 0;
