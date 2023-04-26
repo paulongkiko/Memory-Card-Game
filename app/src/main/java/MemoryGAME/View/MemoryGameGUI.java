@@ -65,15 +65,39 @@ public class MemoryGameGUI {
         player1Score.setFont(player1Score.getFont().deriveFont(24f)); // Increases font size
         
         if (numberPlayers == 1) {
-            player2Label = new JLabel("Player 2");
-            player2Score = new JLabel("0");
-
+            PlayerTwo();
         } else {
-            player2Label = new JLabel("Timer:");
-            player2Score = new JLabel("00.00.00");
-
+            PlayerOne();
         }
         
+        /*player2Label.setHorizontalAlignment(JLabel.CENTER);
+        player2Label.setForeground(Color.BLUE);
+        player2Label.setFont(player2Label.getFont().deriveFont(24f)); // Increases font size
+        //player2Score = new JLabel("0");
+        player2Score.setHorizontalAlignment(JLabel.CENTER);
+        player2Score.setForeground(Color.BLUE);
+        player2Score.setFont(player2Score.getFont().deriveFont(24f)); // Increases font size
+        
+        scorePanel.add(player1Label);
+        scorePanel.add(player1Score);
+        scorePanel.add(player2Label);
+        scorePanel.add(player2Score);
+        
+        gameFrame.add(gamePanel, BorderLayout.CENTER);
+        gameFrame.add(scorePanel, BorderLayout.SOUTH); // Puts score panel at the bottom of the frame
+        
+        currentPlayerLabel = new JLabel("Current Player: Player 1"); // Adds a label to indicate which player's
+        currentPlayerLabel.setForeground(Color.DARK_GRAY);
+        currentPlayerLabel.setHorizontalAlignment(JLabel.CENTER);
+        currentPlayerLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0)); // Adds padding to the label
+        gameFrame.add(currentPlayerLabel, BorderLayout.NORTH); // Puts the current player label at the top of the frame
+    
+        gameFrame.setVisible(true);*/
+    }
+
+    private void PlayerOne(){
+        player2Label = new JLabel("Timer:");
+        player2Score = new JLabel("00.00.00");
         player2Label.setHorizontalAlignment(JLabel.CENTER);
         player2Label.setForeground(Color.BLUE);
         player2Label.setFont(player2Label.getFont().deriveFont(24f)); // Increases font size
@@ -98,6 +122,34 @@ public class MemoryGameGUI {
     
         gameFrame.setVisible(true);
     }
+    private void PlayerTwo(){
+        player2Label = new JLabel("Player 2");
+        player2Score = new JLabel("0");
+        player2Label.setHorizontalAlignment(JLabel.CENTER);
+        player2Label.setForeground(Color.BLUE);
+        player2Label.setFont(player2Label.getFont().deriveFont(24f)); // Increases font size
+        //player2Score = new JLabel("0");
+        player2Score.setHorizontalAlignment(JLabel.CENTER);
+        player2Score.setForeground(Color.BLUE);
+        player2Score.setFont(player2Score.getFont().deriveFont(24f)); // Increases font size
+        
+        scorePanel.add(player1Label);
+        scorePanel.add(player1Score);
+        scorePanel.add(player2Label);
+        scorePanel.add(player2Score);
+        
+        gameFrame.add(gamePanel, BorderLayout.CENTER);
+        gameFrame.add(scorePanel, BorderLayout.SOUTH); // Puts score panel at the bottom of the frame
+        
+        currentPlayerLabel = new JLabel("Current Player: Player 1"); // Adds a label to indicate which player's
+        currentPlayerLabel.setForeground(Color.DARK_GRAY);
+        currentPlayerLabel.setHorizontalAlignment(JLabel.CENTER);
+        currentPlayerLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0)); // Adds padding to the label
+        gameFrame.add(currentPlayerLabel, BorderLayout.NORTH); // Puts the current player label at the top of the frame
+    
+        gameFrame.setVisible(true);
+    }
+
 
     public void displayHighScores() {
         List<String> highScores = new ArrayList<>(); 
