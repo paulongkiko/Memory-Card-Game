@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+import java.awt.Color;
+
 
 import MemoryGame.ControllerInterface;
 import MemoryGame.GameObserver;
@@ -18,6 +20,8 @@ public class MemoryGameGUI implements ActionListener {
     private JLabel playerLabel;
     private JLabel playerScore;
     private JLabel movesLabel;
+    Color panelColor = new Color(255,230,205);
+    Color fontColor = new Color(76,41,8);
 
     private ControllerInterface controller;
     private CardBoard board;
@@ -30,39 +34,27 @@ public class MemoryGameGUI implements ActionListener {
         gameFrame = new JFrame("Memory Game");
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.setSize(800, 600);
-
-        gameFrame = new JFrame("Memory Game");
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.setSize(800, 600);
         
         gamePanel = new CardPanel(board, this);
         
         scorePanel = new JPanel();
         scorePanel.setLayout(new GridLayout(2, 2));
+        scorePanel.setBackground(panelColor);
         scorePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        
-        playerLabel = new JLabel("Player 1");
-        playerLabel.setHorizontalAlignment(JLabel.CENTER);
-        playerLabel.setForeground(Color.RED);
-        playerLabel.setFont(playerLabel.getFont().deriveFont(24f)); // Increases font size
-        playerScore = new JLabel("0");
-        playerScore.setHorizontalAlignment(JLabel.CENTER);
-        playerScore.setForeground(Color.RED);
-        playerScore.setFont(playerScore.getFont().deriveFont(24f)); // Increases font size
         
         playerLabel = new JLabel("Timer:");
         playerScore = new JLabel("00.00.00");
         playerLabel.setHorizontalAlignment(JLabel.CENTER);
-        playerLabel.setForeground(Color.RED);
-        playerLabel.setFont(playerLabel.getFont().deriveFont(24f)); // Increases font size
+        playerLabel.setForeground(fontColor);
+        playerLabel.setFont(playerLabel.getFont().deriveFont(30f)); // Increases font size
         playerScore.setHorizontalAlignment(JLabel.CENTER);
-        playerScore.setForeground(Color.RED);
-        playerScore.setFont(playerScore.getFont().deriveFont(24f)); // Increases font size
+        playerScore.setForeground(fontColor);
+        playerScore.setFont(playerScore.getFont().deriveFont(30f)); // Increases font size
         
         movesLabel = new JLabel("Moves: 0");
         movesLabel.setHorizontalAlignment(JLabel.CENTER);
-        movesLabel.setForeground(Color.BLUE);
-        movesLabel.setFont(movesLabel.getFont().deriveFont(24f)); // Increases font size
+        movesLabel.setForeground(fontColor);
+        movesLabel.setFont(movesLabel.getFont().deriveFont(30f)); // Increases font size
 
         scorePanel.add(playerLabel);
         scorePanel.add(playerScore);
