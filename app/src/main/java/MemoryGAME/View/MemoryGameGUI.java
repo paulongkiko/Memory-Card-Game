@@ -205,7 +205,7 @@ public class MemoryGameGUI implements ActionListener {
                 System.out.println("New file created here: "+file.getAbsolutePath());
             }
     
-            // Read the contents of the file into a list of integers
+        
             ArrayList<Integer> highScores = new ArrayList<>();
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             String line;
