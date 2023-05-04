@@ -23,10 +23,13 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
     private Card currentCardPressed;
     Color panelColor = new Color(255,230,205);
     Color fontColor = new Color(76,41,8);
+    Color frontCardColor = new Color(35,79,30);
 
 
     private ControllerInterface controller;
     private CardBoard board;
+    private int disabledCards;
+    private String finalResult;
 
     public MemoryGameTwoPlayerGUI(ControllerInterface controller, CardBoard board)
     {
@@ -83,26 +86,11 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
         gameFrame.setVisible(true);
     }
 
-     // ActionListener implementation
-    /*@Override
+
+        @Override
     public void actionPerformed(ActionEvent event)
     {
         Card button = (Card)event.getSource();
-        this.controller.cardPressed(button);
-
-        this.board.incrementMoves();
-        currentPlayerLabel.setText("Current Player: Player " + this.board.getPlayerTurn());
-
-        player1Score.setText(String.valueOf(this.board.getPlayer1Score()));
-        player2Score.setText(String.valueOf(this.board.getPlayer2Score()));
-    }*/
-    @Override
-    public void actionPerformed(ActionEvent event)
-    {
-        Card button = (Card)event.getSource();
-        this.controller.cardPressed(button);
-        this.board.incrementMoves();
-        currentPlayerLabel.setText("Current Player: Player " + this.board.getPlayerTurn());
         if (button.isMatched()) {
             return; // Do nothing if the card is already matched
         }
@@ -111,21 +99,32 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
             // First card clicked
             button.setBackground(Color.WHITE);
             previousCardPressed = button;
+
+            previousCardPressed.revealCardContent();
         } else {
             // Second card clicked
-            currentCardPressed = button;
-            boolean result = this.board.checkMatch(previousCardPressed, currentCardPressed);
+            if(button.revealCardContent()){
+                button.setBackground(Color.WHITE);
+                currentCardPressed = button;
+                boolean result = this.board.checkMatch(previousCardPressed, currentCardPressed);
             if (result == false) {
                 // If the two cards are not a match, wait for 1 second and then change the background color back to green
-                Timer timer = new Timer(1000, new ActionListener() {
+                Timer timer = new Timer(200, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        previousCardPressed.setBackground(previousCardPressed.getFrontCardColor());
-                        currentCardPressed.setBackground(currentCardPressed.getFrontCardColor());
-                        previousCardPressed.hideCardContent();
-                        currentCardPressed.hideCardContent();
-                        previousCardPressed = null;
-                        currentCardPressed = null;
+                            previousCardPressed.setBackground(frontCardColor);
+                            currentCardPressed.setBackground(frontCardColor);
+                            previousCardPressed.hideCardContent();
+                            currentCardPressed.hideCardContent();
+                            previousCardPressed = null;
+                            currentCardPressed = null;
+                            if (board.getPlayerTurn() == 1) {
+                                board.setPlayerTurn(2);
+                            } else {
+                                board.setPlayerTurn(1);
+                            }
+                            currentPlayerLabel.setText("Current Player: Player " + board.getPlayerTurn());
+                            
                     }
                 });
                 timer.setRepeats(false);
@@ -137,10 +136,59 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
                 if (this.board.getPlayerTurn() == 1){
                     currentCardPressed.setBackground(Color.RED);
                     previousCardPressed.setBackground(Color.RED);
-
+                    this.board.setPlayer1Score(this.board.getPlayer1Score() + 1);
+                    player1Score.setText(String.valueOf(this.board.getPlayer1Score()));
                 }else{
                     currentCardPressed.setBackground(Color.BLUE);
                     previousCardPressed.setBackground(Color.BLUE);
+                    this.board.setPlayer2Score(this.board.getPlayer2Score() + 1);
+                    player2Score.setText(String.valueOf(this.board.getPlayer2Score()));
+                }
+
+                previousCardPressed.setEnabled(false);
+                currentCardPressed.setEnabled(false);
+                disabledCards += 2;
+
+                if (this.disabledCards == 16) {
+                    int player1Score = this.board.getPlayer1Score();
+                    int player2Score = this.board.getPlayer2Score();
+                    if (player1Score > player2Score) {
+                        finalResult = "Player 1 Won!";
+                    } else if (player1Score < player2Score) {
+                        finalResult = "Player 2 Won!";
+                    } else {
+                        finalResult = "It is a tie!";
+                    }
+                    
+                    //JOptionPane.showMessageDialog(null, "Game Over!");
+                    JPanel gameOverPanel = new JPanel();
+                    gameOverPanel.setLayout(new GridLayout(2, 1)); // create a grid layout with 2 rows and 1 column
+
+                    JButton startOverButton = new JButton("Start over. " + finalResult);
+                    startOverButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+            
+                            restartGame();
+                            Window win = SwingUtilities.getWindowAncestor(gameOverPanel);
+                            win.dispose();
+                            
+                            }
+                    });
+
+                    JButton gameOverButton = new JButton("Game over. " + finalResult);
+                    gameOverButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            System.exit(0);
+                        }
+                    });
+
+                    gameOverPanel.add(startOverButton); // add the "Start over" button to the panel
+                    gameOverPanel.add(gameOverButton); // add the "Game over" button to the panel
+
+                    JOptionPane.showMessageDialog(null, gameOverPanel, "Game Over", JOptionPane.PLAIN_MESSAGE);
+
                 }
 
 
@@ -152,8 +200,31 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
                 player2Score.setText(String.valueOf(this.board.getPlayer2Score()));
 
             }
+        } 
+        else {
+            previousCardPressed.hideCardContent();  //add green
+            previousCardPressed.setBackground(frontCardColor);
+            previousCardPressed=null; 
         }
-
- 
+        }
+        
     }
+
+    public void restartGame() {
+        // Reset the board
+        gameFrame.dispose();
+        // create a new card board object
+        CardBoard newBoard = new CardBoard();
+
+        // create a new memory game GUI with the new board object
+        MemoryGameTwoPlayerGUI newGame = new MemoryGameTwoPlayerGUI(controller, newBoard);
+    
+        // Reset the cards
+        previousCardPressed = null;
+        currentCardPressed = null;
+        disabledCards = 0;
+    }
+    
+     
+
 }

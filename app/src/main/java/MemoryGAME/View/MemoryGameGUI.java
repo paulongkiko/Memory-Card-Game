@@ -133,7 +133,7 @@ public class MemoryGameGUI implements ActionListener {
                     });
                     timer.setRepeats(false);
                     timer.start();
-                }else {
+                } else {
                     // If the two cards are a match, set their isMatched variable to true
                     previousCardPressed.setMatched(true);
                     currentCardPressed.setMatched(true);
@@ -179,7 +179,7 @@ public class MemoryGameGUI implements ActionListener {
                     previousCardPressed = null;
                     currentCardPressed = null;
                 }
-            }else{
+            } else {
                 previousCardPressed.hideCardContent();  //add green
                 previousCardPressed.setBackground(frontCardColor);
                 previousCardPressed=null; 
