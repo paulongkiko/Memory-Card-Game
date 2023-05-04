@@ -4,17 +4,21 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.Timer;
 import java.awt.Color;
 
 
 import MemoryGame.ControllerInterface;
-import MemoryGame.GameObserver;
+// import MemoryGame.GameObserver;
 import MemoryGame.model.CardBoard;
 
 
@@ -192,25 +196,42 @@ public class MemoryGameGUI implements ActionListener {
     }
 
     public void addHighScore(int i){
-
         String fileName = "HighScores.txt";
-
+    
         try {
             File file = new File(fileName);
             if (!file.exists()) {
                 file.createNewFile();
                 System.out.println("New file created here: "+file.getAbsolutePath());
             }
-            FileWriter fileWriter = new FileWriter(file, true);
+    
+            // Read the contents of the file into a list of integers
+            ArrayList<Integer> highScores = new ArrayList<>();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                highScores.add(Integer.parseInt(line));
+            }
+            bufferedReader.close();
+    
+            // Add the new integer to the list
+            highScores.add(i);
+    
+            // Sort the list in ascending order
+            Collections.sort(highScores);
+    
+            // Write the sorted list back to the file
+            FileWriter fileWriter = new FileWriter(file, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-            bufferedWriter.write(Integer.toString(i));
-            bufferedWriter.newLine();
-
+            for (int score : highScores) {
+                bufferedWriter.write(Integer.toString(score));
+                bufferedWriter.newLine();
+            }
             bufferedWriter.close();
-            System.out.println("The string has been appended to the file.");
+    
+            System.out.println("The integer has been appended to the file in ascending order.");
         } catch (IOException e) {
-            System.out.println("An error occurred while appending the string to the file.");
+            System.out.println("An error occurred while appending the integer to the file.");
             e.printStackTrace();
         }
 
