@@ -55,7 +55,12 @@ public class GameController implements ControllerInterface
 }*/
 package MemoryGame.controller;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import java.awt.Button;
+import java.lang.Thread;
+
 
 import MemoryGame.ControllerInterface;
 import MemoryGame.view.MemoryGameGUI;
@@ -77,34 +82,43 @@ public class GameController implements ControllerInterface
     }
 
     public void cardPressed(Card card) {
-        card.revealCardContent();
+/* 
+        if(card.revealCardContent()){
 
-        if (this.previousCardPressed == null) {
-            this.previousCardPressed = card;
-            return;
-        } 
+            if (this.previousCardPressed == null) {
+                this.previousCardPressed = card;
+                return;
+            } 
 
-        if (this.currentCardPressed == null) {
-            this.currentCardPressed = card;
+            if (this.currentCardPressed == null) {
+                this.currentCardPressed = card;
+            }
+
+            boolean result = this.board.checkMatch(previousCardPressed, currentCardPressed);
+            System.out.println("Strrunz: "+result);
+            if (result == false) {
+                //this.previousCardPressed.hideCardContent();
+                //this.currentCardPressed.hideCardContent();
+            } else {
+                System.out.println("ueueueu");
+                this.previousCardPressed.setEnabled(false);
+                this.currentCardPressed.setEnabled(false);
+
+                this.disabledCards += 2;
+            }
+
+            if (this.disabledCards == 16) {
+                JOptionPane.showMessageDialog(null, "Game Over!");
+            }
+
+            this.previousCardPressed = null;
+            this.currentCardPressed = null;
+        }else{
+            card.hideCardContent();  //add green
+            this.currentCardPressed = null;
+            this.previousCardPressed = null;
+            //card.setEnabled(false);
         }
-
-        boolean result = this.board.checkMatch(previousCardPressed, currentCardPressed);
-
-        if (result == false) {
-            this.previousCardPressed.hideCardContent();
-            this.currentCardPressed.hideCardContent();
-        } else {
-            this.previousCardPressed.setEnabled(false);
-            this.currentCardPressed.setEnabled(false);
-
-            this.disabledCards += 2;
-        }
-
-        if (this.disabledCards == 16) {
-            JOptionPane.showMessageDialog(null, "Game Over!");
-        }
-
-        this.previousCardPressed = null;
-        this.currentCardPressed = null;
+*/
     }
 }

@@ -48,8 +48,13 @@ public class Card extends JButton
         this.setForeground(numColor); // Set the text color to white
         this.setFont(new Font("Arial", Font.BOLD, 30)); // Set the font to Arial, bold, 20px size
     }
-    public void revealCardContent() {
-        this.setText(this.cardContent);
+    public boolean revealCardContent() {
+        if (this.getText().equals("")){
+            this.setText(this.cardContent);
+            return true;
+        }
+        this.setForeground(frontCardColor);
+        return false;
     }
 
     public String getCardContent() {
