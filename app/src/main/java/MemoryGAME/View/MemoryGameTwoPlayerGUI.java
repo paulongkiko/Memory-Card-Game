@@ -17,7 +17,13 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
     private JLabel player2Label;
     private JLabel player1Score;
     private JLabel player2Score;
+    private JLabel movesLabel;
     private JLabel currentPlayerLabel;
+    private Card previousCardPressed;
+    private Card currentCardPressed;
+    Color panelColor = new Color(255,230,205);
+    Color fontColor = new Color(76,41,8);
+
 
     private ControllerInterface controller;
     private CardBoard board;
@@ -78,7 +84,7 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
     }
 
      // ActionListener implementation
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent event)
     {
         Card button = (Card)event.getSource();
@@ -89,5 +95,65 @@ public class MemoryGameTwoPlayerGUI implements ActionListener {
 
         player1Score.setText(String.valueOf(this.board.getPlayer1Score()));
         player2Score.setText(String.valueOf(this.board.getPlayer2Score()));
+    }*/
+    @Override
+    public void actionPerformed(ActionEvent event)
+    {
+        Card button = (Card)event.getSource();
+        this.controller.cardPressed(button);
+        this.board.incrementMoves();
+        currentPlayerLabel.setText("Current Player: Player " + this.board.getPlayerTurn());
+        if (button.isMatched()) {
+            return; // Do nothing if the card is already matched
+        }
+
+        if (previousCardPressed == null) {
+            // First card clicked
+            button.setBackground(Color.WHITE);
+            previousCardPressed = button;
+        } else {
+            // Second card clicked
+            currentCardPressed = button;
+            boolean result = this.board.checkMatch(previousCardPressed, currentCardPressed);
+            if (result == false) {
+                // If the two cards are not a match, wait for 1 second and then change the background color back to green
+                Timer timer = new Timer(1000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        previousCardPressed.setBackground(previousCardPressed.getFrontCardColor());
+                        currentCardPressed.setBackground(currentCardPressed.getFrontCardColor());
+                        previousCardPressed.hideCardContent();
+                        currentCardPressed.hideCardContent();
+                        previousCardPressed = null;
+                        currentCardPressed = null;
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+            } else {
+                // If the two cards are a match, set their isMatched variable to true
+                previousCardPressed.setMatched(true);
+                currentCardPressed.setMatched(true);
+                if (this.board.getPlayerTurn() == 1){
+                    currentCardPressed.setBackground(Color.RED);
+                    previousCardPressed.setBackground(Color.RED);
+
+                }else{
+                    currentCardPressed.setBackground(Color.BLUE);
+                    previousCardPressed.setBackground(Color.BLUE);
+                }
+
+
+                previousCardPressed = null;
+                currentCardPressed = null;
+
+
+                player1Score.setText(String.valueOf(this.board.getPlayer1Score()));
+                player2Score.setText(String.valueOf(this.board.getPlayer2Score()));
+
+            }
+        }
+
+ 
     }
 }
