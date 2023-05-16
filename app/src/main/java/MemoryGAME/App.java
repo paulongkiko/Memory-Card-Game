@@ -3,10 +3,7 @@ package MemoryGame;
 import javax.swing.JOptionPane;
 
 import MemoryGame.controller.GameController;
-import MemoryGame.controller.GameControllerTwoPlayer;
 import MemoryGame.model.CardBoard;
-import MemoryGame.model.HighScores;
-import MemoryGame.view.HighScoresGUI;
 
 public class App {
     public static void main(String[] args) {
@@ -16,13 +13,13 @@ public class App {
         int selection = JOptionPane.showOptionDialog(null, "Select a game mode:", "Memory Game Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
         CardBoard board = new CardBoard();
-        HighScores scores = new HighScores();
         if (selection == 0) {
-            GameControllerTwoPlayer controller = new GameControllerTwoPlayer(board);
+           new GameController(board, 2);
         } else if (selection == 1) {
-            GameController controller = new GameController(board);
+            new GameController(board, 1);
         } else {
-            HighScoresGUI scoresGUI = new HighScoresGUI(scores);
+            // If there is no player, then the high scores will be displayed
+            new GameController(board, 0);
         }
     }
 }
