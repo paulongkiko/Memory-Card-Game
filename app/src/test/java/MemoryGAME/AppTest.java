@@ -4,14 +4,44 @@
 package MemoryGame;
 
 import org.junit.Test;
-
-import MemoryGame.App;
-
+import MemoryGame.model.CardBoard;
+import MemoryGame.view.Card;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 public class AppTest {
-    @Test public void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+   
+    @Test
+    public void testGetCardsContent()
+    {
+        CardBoard board = new CardBoard();
+
+        String [] unshuffled = {"1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8"};
+        String [] shuffled = board.getCardsContent().toArray(new String[0]);
+
+        assertFalse(Arrays.equals(unshuffled, shuffled));
+    }
+
+    @Test
+    public void testCheckMatchFalse()
+    {
+        CardBoard board = new CardBoard();
+
+        Card card1 = new Card("1");
+        Card card2 = new Card("2");
+
+        assertFalse(board.checkMatch(card1, card2));
+    }
+
+    @Test
+    public void testCheckMatchTrue()
+    {
+        CardBoard board = new CardBoard();
+
+        Card card1 = new Card("1");
+        Card card2 = new Card("1");
+
+        assertTrue(board.checkMatch(card1, card2));
     }
 }
